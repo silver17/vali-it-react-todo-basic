@@ -1,1 +1,9 @@
-npm install prettier react-jss
+### Packages
+
+- `npm install react-jss`
+- `npm install classnames`
+- `npm install -D prettier`
+
+### Run application
+
+- `npm run start`
