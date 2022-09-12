@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
 });
 
 type CreateTodoProps = {
-  setTodos: ([]) => void;
+  setTodos: (todos: Todo[]) => void;
   todos: Todo[];
   id: number;
 };
