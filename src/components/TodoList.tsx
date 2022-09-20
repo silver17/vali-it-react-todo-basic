@@ -10,7 +10,11 @@ const useStyles = createUseStyles({
     display: "flex",
     flexDirection: "column",
     gap: 10,
-    width: "35%",
+    width: "100%",
+    maxWidth: 756,
+    "& > *": {
+      margin: [0, 10],
+    },
   },
 });
 
