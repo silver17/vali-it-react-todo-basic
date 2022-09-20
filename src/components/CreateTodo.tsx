@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createUseStyles } from "react-jss";
+import fetchAvatar from "../helper/avatarHelper";
 import Todo from "../models/Todo";
 
 const useStyles = createUseStyles({
@@ -10,9 +11,7 @@ const useStyles = createUseStyles({
   },
   title: {
     textAlign: "center",
-    fontWeight: 700,
-    fontSize: 25,
-    borderBottom: "2px solid #FFFFFF",
+    fontSize: 30,
   },
   btn: {
     backgroundColor: "#CDEDF6",
@@ -37,11 +36,12 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ todos, setTodos, id }) => {
   const classes = useStyles();
   const [todoMessage, setTodoMessage] = useState<string>("");
 
-  const addNewTodo = (): void => {
+  const addNewTodo = async (): Promise<void> => {
     const newTodo: Todo = {
       id: id,
       completed: false,
       message: todoMessage,
+      avatar: await fetchAvatar(),
     };
 
     setTodos([...todos, newTodo]);

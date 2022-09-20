@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
-import CreateTodo from "./components/CreateTodo";
-import TodoList from "./components/TodoList";
-import Todo from "./models/Todo";
+import CreateTodo from "../components/CreateTodo";
+import TodoList from "../components/TodoList";
+import Todo from "../models/Todo";
 
 const useStyles = createUseStyles({
   container: {
@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const App: React.FC = () => {
+const HomePage: React.FC = () => {
   const classes = useStyles();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [nextID, setNextID] = useState(1);
@@ -32,4 +32,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default HomePage;

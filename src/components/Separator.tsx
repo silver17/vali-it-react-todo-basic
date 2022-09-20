@@ -2,17 +2,22 @@ import React from "react";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
-  container: {
+  horizontal: {
     borderBottom: "2px solid #FFFFFF",
-    borderRadius: 10,
-    width: "100%",
+  },
+  vertical: {
+    borderLeft: "2px solid #FFFFFF",
   },
 });
 
-const Separator: React.FC = () => {
+type SeparatorProps = {
+  vertical?: boolean;
+};
+
+const Separator: React.FC<SeparatorProps> = ({ vertical = false }) => {
   const classes = useStyles();
 
-  return <div className={classes.container} />;
+  return <div className={vertical ? classes.vertical : classes.horizontal} />;
 };
 
 export default Separator;

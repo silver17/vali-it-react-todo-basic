@@ -12,27 +12,34 @@ const useStyles = createUseStyles({
     border: "2px solid transparent",
     borderRadius: 10,
     backgroundColor: "#074446",
-    width: "100%",
     "&:hover": {
       border: "2px solid #5EB1BF",
     },
+    padding: [0, 5],
   },
   unfinished: {
     backgroundColor: "#EF7B45",
   },
   todoSection: {
-    padding: [10, 10],
+    padding: 10,
+  },
+  avatar: {
+    padding: [5, 0],
+    display: "flex",
+    borderRadius: 35,
   },
   deleteBtn: {
     color: "#D84727",
     fontWeight: 700,
-    border: "1px solid #D84727",
+    border: "1px solid transparent",
     borderRadius: "50%",
     backgroundColor: "#FFFFFF",
-    padding: [5, 10],
+    padding: [0, 5],
     width: 35,
     height: 35,
-    marginRight: 5,
+    "&:disabled": {
+      opacity: 0.3,
+    },
   },
 });
 
@@ -59,10 +66,12 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
     setTodos(updatedTodos);
   };
 
-  const deleteTodo = (e: React.MouseEvent, id: number): void => {
+  const deleteTodo = (e: React.MouseEvent, todo: Todo): void => {
     e.stopPropagation();
-    const updatesTodos: Todo[] = todos.filter((el) => el.id !== id);
-    setTodos(updatesTodos);
+    if (!todo.completed) {
+      const updatesTodos: Todo[] = todos.filter((el) => el.id !== todo.id);
+      setTodos(updatesTodos);
+    }
   };
 
   return (
@@ -74,13 +83,23 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
       onClick={() => completeTodo(todo)}
       key={todo.id}
     >
+      <img
+        src={todo.avatar}
+        width={45}
+        height={45}
+        className={classes.avatar}
+        alt=""
+      />
       <div className={classes.todoSection}>{todo.message}</div>
-      <button
-        onClick={(e) => deleteTodo(e, todo.id)}
-        className={classnames([classes.deleteBtn, classes.todoSection])}
-      >
-        X
-      </button>
+      <div>
+        <button
+          onClick={(e) => deleteTodo(e, todo)}
+          className={classnames([classes.deleteBtn])}
+          disabled={todo.completed}
+        >
+          X
+        </button>
+      </div>
     </div>
   );
 };
