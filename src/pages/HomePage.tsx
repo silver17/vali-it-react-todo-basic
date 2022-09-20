@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
 import CreateTodo from "../components/CreateTodo";
 import TodoList from "../components/TodoList";
+import { getTodos } from "../controller/todoController";
 import Todo from "../models/Todo";
 
 const useStyles = createUseStyles({
@@ -16,17 +17,21 @@ const useStyles = createUseStyles({
 const HomePage: React.FC = () => {
   const classes = useStyles();
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [nextID, setNextID] = useState(1);
 
   useEffect(() => {
-    if (todos && todos.length > 0) {
-      setNextID(Math.max(...todos.map((el) => el.id)) + 1);
-    }
-  }, [todos]);
+    (async () => {
+      const todos: Todo[] = await getTodos();
+      setTodos(todos);
+    })();
+
+    return () => {
+      setTodos([]);
+    };
+  }, []);
 
   return (
     <div className={classes.container}>
-      <CreateTodo todos={todos} setTodos={setTodos} id={nextID} />
+      <CreateTodo todos={todos} setTodos={setTodos} />
       <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );

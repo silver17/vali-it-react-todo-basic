@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import React from "react";
 import { createUseStyles } from "react-jss";
+import { changeTodoStatus, deleteTodo } from "../controller/todoController";
 import Todo from "../models/Todo";
 
 const useStyles = createUseStyles({
@@ -56,21 +57,33 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
 }) => {
   const classes = useStyles();
 
-  const completeTodo = (todo: Todo): void => {
-    const updatedTodos: Todo[] = todos.map((el) => {
-      if (el.id === todo.id) {
-        todo.completed = !todo.completed;
-      }
-      return el;
-    });
-    setTodos(updatedTodos);
+  const completeTodo = async (todo: Todo): Promise<void> => {
+    const todoToBeUpdated: Todo = {
+      id: todo.id,
+      message: todo.message,
+      completed: !todo.completed,
+      avatar: todo.avatar,
+    };
+    const { isSuccess, body } = await changeTodoStatus(todoToBeUpdated);
+    if (isSuccess && body) {
+      const updatedTodos: Todo[] = todos.map((el) => {
+        if (el.id === todo.id) {
+          return body as Todo;
+        }
+        return el;
+      });
+      setTodos(updatedTodos);
+    }
   };
 
-  const deleteTodo = (e: React.MouseEvent, todo: Todo): void => {
+  const removeTodo = async (e: React.MouseEvent, todo: Todo): Promise<void> => {
     e.stopPropagation();
     if (!todo.completed) {
-      const updatesTodos: Todo[] = todos.filter((el) => el.id !== todo.id);
-      setTodos(updatesTodos);
+      const response = await deleteTodo(todo);
+      if (response) {
+        const updatesTodos: Todo[] = todos.filter((el) => el.id !== todo.id);
+        setTodos(updatesTodos);
+      }
     }
   };
 
@@ -93,7 +106,7 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
       <div className={classes.todoSection}>{todo.message}</div>
       <div>
         <button
-          onClick={(e) => deleteTodo(e, todo)}
+          onClick={(e) => removeTodo(e, todo)}
           className={classnames([classes.deleteBtn])}
           disabled={todo.completed}
         >

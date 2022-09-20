@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import NavigationPath from "../models/NavigationPath";
 
 const useStyles = createUseStyles({
@@ -40,6 +40,7 @@ const useStyles = createUseStyles({
 
 const Navbar: React.FC = () => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <div className={classes.container}>
@@ -54,7 +55,11 @@ const Navbar: React.FC = () => {
               <li key={index}>
                 <Link
                   to={el.path}
-                  style={{ textDecoration: "none", color: "black" }}
+                  style={{
+                    textDecoration:
+                      location.pathname === el.path ? "underline" : "none",
+                    color: "black",
+                  }}
                 >
                   {el.name}
                 </Link>
