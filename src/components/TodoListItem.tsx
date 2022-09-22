@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import React from "react";
 import { createUseStyles } from "react-jss";
-import { changeTodoStatus, deleteTodo } from "../controller/todoController";
+import { updateTodo, deleteTodo } from "../controller/todoController";
 import Todo from "../models/Todo";
 
 const useStyles = createUseStyles({
@@ -64,11 +64,11 @@ const TodoListItem: React.FC<TodoListItemProps> = ({
       completed: !todo.completed,
       avatar: todo.avatar,
     };
-    const { isSuccess, body } = await changeTodoStatus(todoToBeUpdated);
+    const { isSuccess, body } = await updateTodo(todoToBeUpdated);
     if (isSuccess && body) {
       const updatedTodos: Todo[] = todos.map((el) => {
         if (el.id === todo.id) {
-          return body as Todo;
+          return body;
         }
         return el;
       });

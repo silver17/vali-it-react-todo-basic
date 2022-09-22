@@ -48,7 +48,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ todos, setTodos }) => {
     };
     const { isSuccess, body } = await addTodo(newTodo);
     if (isSuccess && body) {
-      setTodos([...todos, body as Todo]);
+      setTodos([...todos, body]);
       setTodoMessage("");
       setHasError(false);
     } else {
@@ -76,12 +76,12 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ todos, setTodos }) => {
           placeholder="Add new todo..."
           value={todoMessage}
           onChange={(e) => setTodoMessage(e.target.value)}
-          onKeyDown={(e) => addOnEnter(e)}
+          onKeyDown={addOnEnter}
         />
         <button
           type="button"
-          onClick={() => addNewTodo()}
-          disabled={todoMessage && todoMessage.length > 0 ? false : true}
+          onClick={addNewTodo}
+          disabled={todoMessage.length > 0}
           className={classes.btn}
         >
           Add

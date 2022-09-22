@@ -9,12 +9,12 @@ const postOptions: RequestInit = {
   },
 };
 
-type FetchResponse = {
-  body?: object;
+type FetchResponse<T> = {
+  body?: T;
   isSuccess: boolean;
 };
 
-async function addTodo(todo: Todo): Promise<FetchResponse> {
+async function addTodo(todo: Todo): Promise<FetchResponse<Todo>> {
   const response = await fetch(API_PATH, {
     ...postOptions,
     body: JSON.stringify(todo),
@@ -59,7 +59,7 @@ const changeOptions: RequestInit = {
   },
 };
 
-async function updateTodo(todo: Todo): Promise<FetchResponse> {
+async function updateTodo(todo: Todo): Promise<FetchResponse<Todo>> {
   const response = await fetch(`${API_PATH}/${todo.id}`, {
     ...changeOptions,
     body: JSON.stringify(todo),
@@ -77,4 +77,4 @@ async function updateTodo(todo: Todo): Promise<FetchResponse> {
   };
 }
 
-export { addTodo, getTodos, deleteTodo, updateTodo as changeTodoStatus };
+export { addTodo, getTodos, deleteTodo, updateTodo };
