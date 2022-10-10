@@ -15,11 +15,22 @@ const useStyles = createUseStyles({
       margin: [0, 10],
     },
   },
+  toTopBtnContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
 });
 
 type TodoListProps = {
   todos: Todo[];
   setTodos: (todos: Todo[]) => void;
+};
+
+const scrollTop = (): void => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
 
 const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
@@ -47,6 +58,9 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
       {todos.length > 15 && (
         <>
           <TodoCounter todos={todos} />
+          <div className={classes.toTopBtnContainer}>
+            <button onClick={scrollTop}>Back to Top</button>
+          </div>
         </>
       )}
     </div>
