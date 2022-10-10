@@ -1,12 +1,12 @@
 Task 1
 
 In some fetch methods we had to set Content-Type header.
-Move this header name and it's value to constant(s);
+Move this header name and its value to constant(s);
 Note: Duplicating the same thing is never a good practice.
 
 Task 2
 
-Implement SecondPage. Think out what it could show and how could it show it.
+Implement SecondPage. Think what it could show and how it could be displayed.
 
 Task 3
 
