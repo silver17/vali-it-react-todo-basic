@@ -20,3 +20,7 @@
 - `npm install -g json-server`
 - create `db.json` in root directory
 - run `json-server --watch db.json --port 8080`
+
+### Example
+
+- `npm install -g ts-node`

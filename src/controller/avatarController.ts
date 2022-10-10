@@ -5,6 +5,7 @@ async function fetchAvatar(): Promise<string> {
     })
     .then((data) => data.message)
     .catch((err) => {
+      console.log("error fetching avatar", err);
       return "no avatar";
     });
 }

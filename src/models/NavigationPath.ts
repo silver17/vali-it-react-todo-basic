@@ -1,5 +1,5 @@
-import AdminPage from "../pages/AdminPage";
 import HomePage from "../pages/HomePage";
+import SecondPage from "../pages/SecondPage";
 
 type NavType = {
   name: string;
@@ -14,9 +14,9 @@ const NavigationPath: NavType[] = [
     component: HomePage,
   },
   {
-    name: "Admin",
-    path: "/admin",
-    component: AdminPage,
+    name: "Second",
+    path: "/second",
+    component: SecondPage,
   },
 ];
 

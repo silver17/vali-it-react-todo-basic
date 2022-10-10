@@ -9,6 +9,17 @@ const postOptions: RequestInit = {
   },
 };
 
+const deleteOptions: RequestInit = {
+  method: "DELETE",
+};
+
+const changeOptions: RequestInit = {
+  method: "PUT",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 type FetchResponse<T> = {
   body?: T;
   isSuccess: boolean;
@@ -31,10 +42,6 @@ async function addTodo(todo: Todo): Promise<FetchResponse<Todo>> {
   };
 }
 
-const deleteOptions: RequestInit = {
-  method: "DELETE",
-};
-
 async function deleteTodo(todo: Todo): Promise<boolean> {
   return fetch(`${API_PATH}/${todo.id}`, deleteOptions).then((res) => {
     if (res.status === 200) {
@@ -51,13 +58,6 @@ async function getTodos(): Promise<Todo[]> {
       return data;
     });
 }
-
-const changeOptions: RequestInit = {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
 
 async function updateTodo(todo: Todo): Promise<FetchResponse<Todo>> {
   const response = await fetch(`${API_PATH}/${todo.id}`, {
