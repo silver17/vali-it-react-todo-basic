@@ -1,7 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
 import Todo from "../models/Todo";
-import Separator from "./Separator";
 import TodoCounter from "./TodoCounter";
 import TodoListItem from "./TodoListItem";
 
@@ -28,13 +27,11 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
 
   return (
     <div className={classes.container}>
-      <Separator />
       {todos.length === 0 ? (
         <div>No todos yet...</div>
       ) : (
         <>
           <TodoCounter todos={todos} />
-          <Separator />
         </>
       )}
       {todos
@@ -49,7 +46,6 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
         ))}
       {todos.length > 15 && (
         <>
-          <Separator />
           <TodoCounter todos={todos} />
         </>
       )}
