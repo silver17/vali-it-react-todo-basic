@@ -47,6 +47,12 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
             key={todo.id}
           />
         ))}
+      {todos.length > 15 && (
+        <>
+          <Separator />
+          <TodoCounter todos={todos} />
+        </>
+      )}
     </div>
   );
 };

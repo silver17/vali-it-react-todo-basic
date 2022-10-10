@@ -7,6 +7,8 @@ const useStyles = createUseStyles({
   container: {
     backgroundColor: "#FFFFFF",
     height: 50,
+    position: "sticky",
+    top: 0,
   },
   title: {
     display: "flex",

@@ -10,10 +10,6 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     gap: 15,
   },
-  title: {
-    textAlign: "center",
-    fontSize: 30,
-  },
   btn: {
     backgroundColor: "#CDEDF6",
     "&:disabled": {
@@ -64,11 +60,11 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ todos, setTodos }) => {
 
   return (
     <div className={classes.container}>
-      <span className={classes.title}>Add new Todo</span>
+      <h1>Add new Todo</h1>
       {hasError && (
-        <div className={classes.error}>
+        <p className={classes.error}>
           An error occured whild trying to save Todo
-        </div>
+        </p>
       )}
       <div className={classes.inputContainer}>
         <input
@@ -77,11 +73,12 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ todos, setTodos }) => {
           value={todoMessage}
           onChange={(e) => setTodoMessage(e.target.value)}
           onKeyDown={addOnEnter}
+          autoFocus
         />
         <button
           type="button"
           onClick={addNewTodo}
-          disabled={todoMessage.length > 0}
+          disabled={todoMessage.length === 0}
           className={classes.btn}
         >
           Add

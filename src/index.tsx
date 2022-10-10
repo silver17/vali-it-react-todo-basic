@@ -13,7 +13,7 @@ root.render(
       <Navbar />
       <Routes>
         {NavigationPath.map((el) => (
-          <Route path={el.path} element={<el.component />} />
+          <Route path={el.path} element={<el.component />} key={el.path} />
         ))}
       </Routes>
     </BrowserRouter>

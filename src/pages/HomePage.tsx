@@ -11,6 +11,7 @@ const useStyles = createUseStyles({
     flexDirection: "column",
     alignItems: "center",
     gap: 20,
+    marginBottom: 50,
   },
 });
 
