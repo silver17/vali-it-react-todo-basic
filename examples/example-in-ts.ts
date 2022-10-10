@@ -15,7 +15,7 @@ interface ICar {
   isAllWheelDrive: boolean;
 }
 
-const createBMW = (
+const createBMWTS = (
   name: string,
   modelYear: number,
   isAllWheelDrive = false
@@ -26,10 +26,10 @@ const createBMW = (
   isAllWheelDrive,
 });
 
-const x5: Car = createBMW("x5", 2020, true);
-const z1: Car = createBMW("z1", 1990, false);
+const x5TS: Car = createBMWTS("x5", 2020, true);
+const z1TS: Car = createBMWTS("z1", 1990, false);
 
-const printDetails = (car: Car): void => {
+const printDetailsTS = (car: Car): void => {
   console.log(
     `Model ${car.modelName} was manufactured by ${car.manufacturer} in ${car.modelYear}.`
   );
@@ -40,7 +40,7 @@ const printDetails = (car: Car): void => {
   }
 };
 
-function printCar(car?: Car): void {
+function printCarTS(car?: Car): void {
   if (!car) {
     console.log("No car was provided...");
   } else {
@@ -48,12 +48,12 @@ function printCar(car?: Car): void {
   }
 }
 
-function printSeparator() {
+function printSeparatorTS() {
   console.log("--------------");
 }
 
-printDetails(x5);
-printSeparator();
-printDetails(z1);
-printSeparator();
-printCar();
+printDetailsTS(x5TS);
+printSeparatorTS();
+printDetailsTS(z1TS);
+printSeparatorTS();
+printCarTS();

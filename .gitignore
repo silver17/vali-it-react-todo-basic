@@ -26,4 +26,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # js examples
-/examples/*.js
+/examples/example-in-ts.js
